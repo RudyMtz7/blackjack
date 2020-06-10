@@ -1,6 +1,18 @@
+        // Reglas del Juego
+        /*
+        1- Si las cartas del jugador suman 22 o más automaticamente pierde el juego y pierde 100 puntos
+        2- Si el jugador suma 21 automaticamente gana el juego y gana 200 puntos
+        3- Si el jugador se mantiene abajo de 22 puntos y el dealer sobrepasa los 21 puntos el jugador gana 100 puntos
+        4- Si el jugador y el dealer empatan el jugador no pierde ningun punto
+        5- Si el jugador no sobrepasa los 22 puntos pero el dealer tiene más puntos que el jugador igual sin sobrepasar los 22 puntos el dealer gana y el jugador pierde 100 puntos
+        6- Si el dealer suma 21 automaticamente el jugador pierde 200 puntos
+        */
+        
         //Se dan de alta las varibales de las cartas
         var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
         var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+        // Aquí se declara el valor inicial de los puntos del usuario 
+        let userMoney = 0
         //Se dan de alta los arreglos de player, dealer
         var deck = new Array();
         var players = new Array();
@@ -266,13 +278,20 @@
             //Verifica si el jugador gana si su numero es mayor que el del dealer o dealer es mayor que 21 y jugador menor que 22 
             if ((players[0].Points > dealers[0].Points || 21< dealers[0].Points )&& players[0].Points < 22)
             {
+                userMoney += 100
+                console.log(`Dinero: `,userMoney)
+                document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 document.getElementById('parrafo').innerHTML = 'Ganaste';
                 
                 document.getElementById("id01").style.display = "block";  
             }else if(players[0].Points == dealers[0].Points){
+
                 document.getElementById('parrafo').innerHTML = 'Empate';
                 document.getElementById("id01").style.display = "block"; 
             }else{
+                userMoney -= 100 
+                console.log(`Dinero: `, userMoney)
+                document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 console.log(players[0].Points);
                 console.log(dealers[0].Points);
                 document.getElementById('parrafo').innerHTML = 'Perdiste';
@@ -287,6 +306,9 @@
         {
             if (players[0].Points > 21)
             {
+                userMoney -= 100
+                console.log(`Dinero: `, userMoney)
+                document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 document.getElementById('parrafo').innerHTML = 'Perdiste';
                 document.getElementById("id01").style.display = "block";
                 document.getElementById('stay').style.cursor = "not-allowed";
