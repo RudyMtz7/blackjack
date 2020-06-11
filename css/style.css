@@ -68,7 +68,6 @@ margin-top: 10px;
 display:none;
 }
 
-
 .players{
        width: 500px;
 margin: 0 auto;
@@ -136,8 +135,25 @@ text-align: center;
     border-radius:0px;
 }
 
-#txtUserMoney{
+#UserMoney{
     padding: 10px;
     background:black;
     color:white;
+    text-align: center;
+}
+
+#game-panel{
+  display: none;
+}
+
+#start-panel{
+  display: block;
+}
+
+#txtUserMoney{
+  display:block;
+}
+
+#btnUserMoney{
+  display:inline;
 }

@@ -7,11 +7,11 @@
         5- Si el jugador no sobrepasa los 22 puntos pero el dealer tiene más puntos que el jugador igual sin sobrepasar los 22 puntos el dealer gana y el jugador pierde 100 puntos
         6- Si el dealer suma 21 automaticamente el jugador pierde 200 puntos
         */
-        
+
         //Se dan de alta las varibales de las cartas
         var suits = ["Spades", "Hearts", "Diamonds", "Clubs"];
         var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
-        // Aquí se declara el valor inicial de los puntos del usuario 
+        // Aquí se declara el valor inicial de los puntos del usuario
         let userMoney = 0
         //Se dan de alta los arreglos de player, dealer
         var deck = new Array();
@@ -47,7 +47,7 @@
             var hand = new Array();
             var player = { Name: 'Player0', ID: 0, Points: 0, Hand: hand };
             players.push(player);
-            
+
         }
         //Se crea el dealer
         function createDealer()
@@ -56,14 +56,14 @@
             var handDealer = new Array();
             var dealer = { Name: 'Dealer', ID: 1, Points: 0, Hand: handDealer };
             dealers.push(dealer);
-            
+
         }
 
         //Se crean todos los tags para la estructura de la vista del Dealer
         function createDealerUI()
         {
             document.getElementById('dealers').innerHTML = '';
-            
+
                 var div_dealer = document.createElement('div');
                 var div_dealerid= document.createElement('div');
                 var div_hand_Dealer = document.createElement('div');
@@ -80,14 +80,14 @@
                 div_dealer.appendChild(div_hand_Dealer);
                 div_dealer.appendChild(div_points_dealer);
                 document.getElementById('dealers').appendChild(div_dealer);
-            
+
         }
 
         //Se crean todos los tags para la estructura de la vista del Jugador
         function createPlayerUI()
         {
             document.getElementById('players').innerHTML = '';
-           
+
                 var div_player = document.createElement('div');
                 var div_playerid = document.createElement('div');
                 var div_hand = document.createElement('div');
@@ -104,7 +104,24 @@
                 div_player.appendChild(div_hand);
                 div_player.appendChild(div_points);
                 document.getElementById('players').appendChild(div_player);
-            
+
+        }
+
+        //Funcion para que el usuario ingrese el dinero con el que va a jugar
+        function loadMoney()
+        {
+          var dinero = prompt("Ingrese el dinero con el que jugará", "0.00");
+          if (dinero != null)
+          {
+            userMoney = parseFloat(dinero,10);
+            if(userMoney <= 0){
+              alert("Lo siento, la cantidad ingresada no es válida, inténtalo de nuevo.");
+              userMoney = 0;
+              return;
+            }
+            document.getElementById("txtUserMoney").innerHTML = "Puntos: $" + dinero;
+            document.getElementById("txtUserMoney").style.display = "block";
+          }
         }
 
         //Hace el shuffle de la baraja en 1000 iteraciones
@@ -124,8 +141,16 @@
         //Funcion maestra donde inicia el juego
         function startblackjack()
         {
+            if(userMoney == 0){
+              alert("Para poder jugar necesitas tener más que $0.00.");
+              return;
+            }
+            document.getElementById('start-panel').style.display = "none";
+            document.getElementById('game-panel').style.display = "block";
             //En caso de que vuelva a empezar se restaurant los tags
             document.getElementById('btnStart').value = 'Jugar Otra vez';
+            document.getElementById('btnUserMoney').style.cursor = "not-allowed";
+            document.getElementById('btnUserMoney').style.backgroundColor = "grey";
             document.getElementById('stay').style.cursor = "";
             document.getElementById('stay').style.backgroundColor = "";
             document.getElementById('hit').style.cursor = "";
@@ -155,7 +180,7 @@
         //Crea el juego de cartas del jugador y el dealer
         function dealHands()
         {
-            
+
             for(var i = 0; i < 2; i++)
             {
                     //Se mete al for porque el jugador necesita dos cartas
@@ -193,7 +218,7 @@
             icon = '&diams;';
             else
             icon = '&clubs;';
-            
+
             el.className = 'card';
             el.innerHTML = card.Value + '<br/>' + icon;
             return el;
@@ -226,10 +251,10 @@
 
         //Actualiza el numero total de la suma de las cartas del jugador
         function updatePoints()
-        {   
+        {
             getPoints();
             document.getElementById('points_0').innerHTML = players[0].Points;
-            
+
         }
 
         //Actualiza el numero total de la suma de las cartas del dealer
@@ -237,7 +262,7 @@
         {
             getPointsDealers();
             document.getElementById('points_D').innerHTML = dealers[0].Points;
-            
+
         }
 
         //Activado por boton de pedir otra tarjeta
@@ -253,12 +278,14 @@
         //Activado por boton el jugador se queda con su mano de juego
         function stay()
         {
+                document.getElementById('btnUserMoney').style.cursor = "";
+                document.getElementById('btnUserMoney').style.backgroundColor = "";
                 document.getElementById('stay').style.cursor = "not-allowed";
                 document.getElementById('stay').style.backgroundColor = "grey";
                 document.getElementById('hit').style.cursor = "not-allowed";
                 document.getElementById('hit').style.backgroundColor = "grey";
                 end();
-            
+
         }
 
         //Fin del juego
@@ -275,21 +302,21 @@
                 updatePointsDealer();
                 check();
             }
-            //Verifica si el jugador gana si su numero es mayor que el del dealer o dealer es mayor que 21 y jugador menor que 22 
+            //Verifica si el jugador gana si su numero es mayor que el del dealer o dealer es mayor que 21 y jugador menor que 22
             if ((players[0].Points > dealers[0].Points || 21< dealers[0].Points )&& players[0].Points < 22)
             {
                 userMoney += 100
                 console.log(`Dinero: `,userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 document.getElementById('parrafo').innerHTML = 'Ganaste';
-                
-                document.getElementById("id01").style.display = "block";  
+
+                document.getElementById("id01").style.display = "block";
             }else if(players[0].Points == dealers[0].Points){
 
                 document.getElementById('parrafo').innerHTML = 'Empate';
-                document.getElementById("id01").style.display = "block"; 
+                document.getElementById("id01").style.display = "block";
             }else{
-                userMoney -= 100 
+                userMoney -= 100
                 console.log(`Dinero: `, userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 console.log(players[0].Points);
@@ -298,7 +325,7 @@
                 document.getElementById("id01").style.display = "block";
             }
 
-            
+
         }
 
         //Verifica cuando al momento de pedir una carta es mayor a 21, pierdes el juego.
@@ -311,6 +338,8 @@
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 document.getElementById('parrafo').innerHTML = 'Perdiste';
                 document.getElementById("id01").style.display = "block";
+                document.getElementById('btnUserMoney').style.cursor = "";
+                document.getElementById('btnUserMoney').style.backgroundColor = "";
                 document.getElementById('stay').style.cursor = "not-allowed";
                 document.getElementById('stay').style.backgroundColor = "grey";
                 document.getElementById('hit').style.cursor = "not-allowed";
