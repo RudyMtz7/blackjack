@@ -256,7 +256,7 @@
             return points;
         }
 
-        //// Regresa el numero de puntos dependiendo de la suma del dealer
+        // Regresa el numero de puntos dependiendo de la suma del dealer
         function getPointsDealers()
         {
             var points = 0;
