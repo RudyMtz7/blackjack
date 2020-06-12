@@ -1,36 +1,55 @@
 body{
-    background-color: #026607;
+    /* background-color: #026607; */
+    background-image: url(../img/background.jpg);
+}
+
+@font-face {
+  font-family: fugazOne;
+  src: url(../font/Fugaz_One/FugazOne-Regular.ttf);
 }
 
 .game
 {
-    width: 95%;
+    width: 80%;
     border: solid 1px #ddd;
     margin: 0 auto;
-   background: #026607;
-border: solid 10px;
-text-align:center;
-height: 90%;
-min-height:600px;
-border-radius: 10px;
+    background: #01793F;
+    border: solid 10px;
+    text-align:center;
+    height: 90%;
+    min-height:600px;
+    border-radius: 10px;
+    background-image: url(../img/tableBackground.jpg);
 }
 
 .btn{
+    background-color: black;
+    color: white;
     border:none;
     padding: 10px 30px;
-    border-radius:10px;
+    border-radius:12px;
     cursor:pointer;
 }
 
 .btn:hover{
-    background:dodgerblue;
+    background:white;
+    color: black;
+}
+
+#headerContainer{
+  display: flex;
+  justify-content: center;
 }
 
 .game h3
 {
-padding: 10px;
-background:black;
-color:white;
+  padding: 10px;
+  background:black;
+  color:white;
+  font-family: fugazOne;
+  width: 30%;
+  border-radius: 12px;
+  border: 3px dotted white;
 }
 
 .game .game-body
@@ -128,18 +147,14 @@ text-align: center;
     border: double 5px;
 }
 
-.btn
-{
-    background:#222;
-    color:white !important;
-    border-radius:0px;
-}
 
 #UserMoney{
     padding: 10px;
-    background:black;
+    background-image: url(../img/header.jpg);
     color:white;
     text-align: center;
+    background-size: cover;
+    border: 5px solid black;
 }
 
 #game-panel{
@@ -156,4 +171,7 @@ text-align: center;
 
 #btnUserMoney{
   display:inline;
+}
+.jconfirm.jconfirm-white .jconfirm-box, .jconfirm.jconfirm-light .jconfirm-box{
+  width: 80%;
 }

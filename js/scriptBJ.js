@@ -142,7 +142,20 @@
         function startblackjack()
         {
             if(userMoney == 0){
-              alert("Para poder jugar necesitas tener más que $0.00.");
+              $.alert({
+                  title: 'Ingresa dinero',
+                  content: 'Para poder jugar necesitas tener más que $0.00.',
+                  type: 'red',
+                  typeAnimated: true,
+                  buttons: {
+                      tryAgain: {
+                          text: 'Cerrar',
+                          btnClass: 'btn-red',
+                          action: function(){
+                          }
+                      },
+                  }
+              });
               return;
             }
             document.getElementById('start-panel').style.display = "none";
@@ -308,9 +321,23 @@
                 userMoney += 100
                 console.log(`Dinero: `,userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
-                document.getElementById('parrafo').innerHTML = 'Ganaste';
-
-                document.getElementById("id01").style.display = "block";
+                // document.getElementById('parrafo').innerHTML = 'Ganaste';
+                $.confirm({
+                    title: '¡Felicidades!',
+                    content: 'Ganaste + $100.00',
+                    type: 'green',
+                    typeAnimated: true,
+                    buttons: {
+                        tryAgain: {
+                            text: 'Jugar otra vez',
+                            btnClass: 'btn-green',
+                            action: function(){
+                            }
+                        },
+                    }
+                });
+                //pene
+                // document.getElementById("id01").style.display = "block";
             }else if(players[0].Points == dealers[0].Points){
 
                 document.getElementById('parrafo').innerHTML = 'Empate';
@@ -321,8 +348,22 @@
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 console.log(players[0].Points);
                 console.log(dealers[0].Points);
-                document.getElementById('parrafo').innerHTML = 'Perdiste';
-                document.getElementById("id01").style.display = "block";
+                // document.getElementById('parrafo').innerHTML = 'Perdiste';
+                $.alert({
+                    title: 'Perdiste',
+                    content: 'Resulta en -$100.00.',
+                    type: 'red',
+                    typeAnimated: true,
+                    buttons: {
+                        tryAgain: {
+                            text: 'Cerrar',
+                            btnClass: 'btn-red',
+                            action: function(){
+                            }
+                        },
+                    }
+                });
+                // document.getElementById("id01").style.display = "block";
             }
 
 
@@ -336,8 +377,22 @@
                 userMoney -= 100
                 console.log(`Dinero: `, userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
-                document.getElementById('parrafo').innerHTML = 'Perdiste';
-                document.getElementById("id01").style.display = "block";
+                // document.getElementById('parrafo').innerHTML = 'Perdiste';
+                // document.getElementById("id01").style.display = "block";
+                $.alert({
+                    title: 'Perdiste',
+                    content: 'Resulta en -$100.00.',
+                    type: 'red',
+                    typeAnimated: true,
+                    buttons: {
+                        tryAgain: {
+                            text: 'Cerrar',
+                            btnClass: 'btn-red',
+                            action: function(){
+                            }
+                        },
+                    }
+                });
                 document.getElementById('btnUserMoney').style.cursor = "";
                 document.getElementById('btnUserMoney').style.backgroundColor = "";
                 document.getElementById('stay').style.cursor = "not-allowed";

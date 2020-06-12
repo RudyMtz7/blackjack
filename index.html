@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     </head>
     <body>
         <div class="w3-container">
@@ -21,10 +22,11 @@
         </div>
 
         <div class="game">
-            <h3>Blackjack</h3>
-
             <div id="UserMoney">
-            <p id="txtUserMoney">Puntos: $0.00</p>
+              <div id="headerContainer">
+                <h3>Blackjack</h3>
+              </div>
+              <p id="txtUserMoney">Puntos: $0.00</p>
               <input type="button" class="btn" id="btnUserMoney" value="Meter dinero" onclick="loadMoney()">
             </div>
 
@@ -46,5 +48,7 @@
             </div>
         </div>
         <script src="js/scriptBJ.js" ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     </body>
 </html>
