@@ -223,16 +223,23 @@
         {
             var el = document.createElement('div');
             var icon = '';
-            if (card.Suit == 'Hearts')
-            icon='&hearts;';
-            else if (card.Suit == 'Spades')
-            icon = '&spades;';
-            else if (card.Suit == 'Diamonds')
-            icon = '&diams;';
-            else
-            icon = '&clubs;';
+            if (card.Suit == 'Hearts'){
+              el.className = 'cardRed';
+              icon='&hearts;';
+            }
+            else if (card.Suit == 'Spades'){
+              icon = '&spades;';
+              el.className = 'card';
+            }
+            else if (card.Suit == 'Diamonds'){
+              el.className = 'cardRed';
+              icon = '&diams;';
+            }
+            else{
+              icon = '&clubs;';
+              el.className = 'card';
+            }
 
-            el.className = 'card';
             el.innerHTML = card.Value + '<br/>' + icon;
             return el;
         }
@@ -321,7 +328,6 @@
                 userMoney += 100
                 console.log(`Dinero: `,userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
-                // document.getElementById('parrafo').innerHTML = 'Ganaste';
                 $.confirm({
                     title: '¡Felicidades!',
                     content: 'Ganaste + $100.00',
@@ -336,8 +342,7 @@
                         },
                     }
                 });
-                //pene
-                // document.getElementById("id01").style.display = "block";
+
             }else if(players[0].Points == dealers[0].Points){
 
                 document.getElementById('parrafo').innerHTML = 'Empate';
@@ -348,7 +353,6 @@
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
                 console.log(players[0].Points);
                 console.log(dealers[0].Points);
-                // document.getElementById('parrafo').innerHTML = 'Perdiste';
                 $.alert({
                     title: 'Perdiste',
                     content: 'Resulta en -$100.00.',
@@ -363,7 +367,6 @@
                         },
                     }
                 });
-                // document.getElementById("id01").style.display = "block";
             }
 
 
@@ -377,8 +380,6 @@
                 userMoney -= 100
                 console.log(`Dinero: `, userMoney)
                 document.getElementById('txtUserMoney').innerHTML = `Puntos: $${userMoney}`
-                // document.getElementById('parrafo').innerHTML = 'Perdiste';
-                // document.getElementById("id01").style.display = "block";
                 $.alert({
                     title: 'Perdiste',
                     content: 'Resulta en -$100.00.',

@@ -18,8 +18,7 @@ body{
     text-align:center;
     height: 90%;
     min-height:600px;
-    border-radius: 10px;
-    background-image: url(../img/tableBackground.jpg);
+    border-radius: 12px;
 }
 
 .btn{
@@ -73,6 +72,21 @@ text-align:center;
     text-align: center;
     margin: 3px;
     border:solid 3px;
+}
+
+.game .cardRed{
+  width: 50px;
+  height: 80px;
+  padding: 10px;
+  border: solid 1px #808080;
+  background-color: white;
+  display: inline-block;
+  border-radius: 10px;
+  font-size: 10pt;
+  text-align: center;
+  margin: 3px;
+  color: red;
+  border: solid 3px red;
 }
 
 .game .status
